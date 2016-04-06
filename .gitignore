@@ -2,5 +2,5 @@
 .profile
 .mysql_history
 .cache/
-.viminfo
+.vim*
 .gitconfig
