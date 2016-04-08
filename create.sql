@@ -1,4 +1,4 @@
-# Movie table
+# Movie
 
 CREATE TABLE Movie (
 	id INT PRIMARY KEY,
@@ -7,9 +7,6 @@ CREATE TABLE Movie (
 	rating VARCHAR(10),
 	company VARCHAR(50)
 );
-
-LOAD DATA LOCAL INFILE '~/data/movie.del' INTO TABLE Movie
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
 
 
 # Actor
@@ -23,13 +20,6 @@ CREATE TABLE Actor (
 	dod DATE
 );
 
-LOAD DATA LOCAL INFILE '~/data/actor1.del' INTO TABLE Actor
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-LOAD DATA LOCAL INFILE '~/data/actor2.del' INTO TABLE Actor
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-LOAD DATA LOCAL INFILE '~/data/actor3.del' INTO TABLE Actor
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-
 
 # Sales
 
@@ -38,9 +28,6 @@ CREATE TABLE Sales (
 	ticketsSold INT,
 	totalIncome INT
 );
-
-LOAD DATA LOCAL INFILE '~/data/sales.del' INTO TABLE Sales
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
 
 
 # Director
@@ -53,9 +40,6 @@ CREATE TABLE Director (
 	dod DATE
 );
 
-LOAD DATA LOCAL INFILE '~/data/director.del' INTO TABLE Director
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-
 
 # MovieGenre
 
@@ -64,9 +48,6 @@ CREATE TABLE MovieGenre (
 	genre VARCHAR(20)
 );
 
-LOAD DATA LOCAL INFILE '~/data/moviegenre.del' INTO TABLE MovieGenre
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-
 
 # MovieDirector
 
@@ -74,9 +55,6 @@ CREATE TABLE MovieDirector (
 	mid INT,
 	did INT
 );
-
-LOAD DATA LOCAL INFILE '~/data/moviedirector.del' INTO TABLE MovieDirector
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
 
 
 # MovieActor
@@ -87,11 +65,6 @@ CREATE TABLE MovieActor (
 	role VARCHAR(50)
 );
 
-LOAD DATA LOCAL INFILE '~/data/movieactor1.del' INTO TABLE MovieActor
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-LOAD DATA LOCAL INFILE '~/data/movieactor2.del' INTO TABLE MovieActor
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
-
 
 # MovieRating
 
@@ -100,9 +73,6 @@ CREATE TABLE MovieRating (
 	imdb INT,
 	rot INT
 );
-
-LOAD DATA LOCAL INFILE '~/data/movierating.del' INTO TABLE MovieActor
-	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
 
 
 # Review
@@ -122,13 +92,9 @@ CREATE TABLE MaxPersonID (
 	id INT PRIMARY KEY
 );
 
-INSERT INTO MaxPersonID VALUES(69000);
-
 
 # MaxMovieID
 
 CREATE TABLE MaxMovieID (
 	id INT PRIMARY KEY
 );
-
-INSERT INTO MaxMovieID VALUES(4750);
