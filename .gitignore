@@ -4,3 +4,6 @@
 .cache/
 .vim*
 .gitconfig
+.dircolors
+.inputrc
+.ssh/
