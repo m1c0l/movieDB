@@ -2,6 +2,12 @@
 <html>
 <head>
   <title>CS143 Project 1A</title>
+  <style>
+    input[type=submit] {
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
   <?php
