@@ -7,3 +7,4 @@
 .dircolors
 .inputrc
 .ssh/
+*.swp

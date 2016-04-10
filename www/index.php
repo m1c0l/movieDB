@@ -1,21 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CS143 Project 1A</title>
+  <title>CS143 Project 1A</title>
 </head>
 <body>
-	<?php $query = $_GET['query'] ?>
-	<form action="." method="GET">
-		<textarea cols="80" rows="10" name="query"><?php echo $query ?></textarea>
-		<br>
-		<input type="submit" value="Submit">
-	</form>
+  <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
-	<?php
-	if ($query) {
-		echo $query;
-		echo "<table></table>";
-	}
-	?>
-</body>
+    $mysqli = new mysqli('localhost', 'cs143', '', 'CS143');
+
+    if (isset($_GET['query'])) {
+      $query = $_GET['query'];
+    }
+    else {
+      $query = '';
+    }
+  ?>
+
+  <form action="." method="GET">
+    <textarea rows="10" cols="80" name="query"><?php echo $query ?></textarea>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <?php
+    if ($query) {
+      $result = $mysqli->query($query);
+      if ($result) {
+        if ($result->num_rows == 0) {
+          echo '<p>No Results</p>';
+        }
+        else {
+          ?>
+          <br>
+          <table border="1" cellspacing="1" cellpadding="2">
+            <tr>
+            <?php
+              // result schema
+              $fields = $result->fetch_fields();
+              foreach ($fields as $f) {
+              echo '<th>' . $f->name . '</th>';
+              }
+            ?>
+            </tr>
+
+            <?php
+              // result records
+              while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                  foreach ($row as $key => $val) {
+                    if (!$val) $val = 'N/A';
+                    echo '<td>' . $val . '</td>';
+                  }
+                echo '</tr>';
+              }
+            ?>
+
+          </table>
+
+        <?php
+        }
+      }
+      else {
+        echo '<p>Invalid Query</p>';
+      }
+    }
+  ?>
+  </body>
 </html>
