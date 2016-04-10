@@ -24,7 +24,7 @@
     }
   ?>
 
-  <form action="." method="GET">
+  <form method="GET">
     <textarea rows="10" cols="80" name="query"><?php echo $query ?></textarea>
     <br>
     <input type="submit" value="Submit">
