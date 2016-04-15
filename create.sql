@@ -27,7 +27,8 @@ CREATE TABLE Sales (
 	mid INT,
 	ticketsSold INT,
 	totalIncome INT,
-	FOREIGN KEY (mid) references Movie(id)
+	FOREIGN KEY (mid) references Movie(id),
+	CHECK(ticketsSold >= 0)
 ) ENGINE=INNODB;
 
 
@@ -78,7 +79,8 @@ CREATE TABLE MovieRating (
 	mid INT,
 	imdb INT,
 	rot INT,
-	FOREIGN KEY (mid) references Movie(id)
+	FOREIGN KEY (mid) references Movie(id),
+	CHECK(imdb >= 0 AND imdb <= 100 AND rot >= 0 AND rot <= 100)
 ) ENGINE=INNODB;
 
 
