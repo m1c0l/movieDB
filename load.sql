@@ -48,7 +48,7 @@ LOAD DATA LOCAL INFILE '~/data/movieactor2.del' INTO TABLE MovieActor
 
 # MovieRating
 
-LOAD DATA LOCAL INFILE '~/data/movierating.del' INTO TABLE MovieActor
+LOAD DATA LOCAL INFILE '~/data/movierating.del' INTO TABLE MovieRating
 	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
 
 
