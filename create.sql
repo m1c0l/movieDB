@@ -6,7 +6,7 @@ CREATE TABLE Movie (
 	year INT,
 	rating VARCHAR(10),
 	company VARCHAR(50)
-);
+) ENGINE=INNODB;
 
 
 # Actor
@@ -18,16 +18,17 @@ CREATE TABLE Actor (
 	sex VARCHAR(6),
 	dob DATE,
 	dod DATE
-);
+) ENGINE=INNODB;
 
 
 # Sales
 
 CREATE TABLE Sales (
-	mid INT PRIMARY KEY,
+	mid INT,
 	ticketsSold INT,
-	totalIncome INT
-);
+	totalIncome INT,
+	FOREIGN KEY (mid) references Movie(id)
+) ENGINE=INNODB;
 
 
 # Director
@@ -38,23 +39,26 @@ CREATE TABLE Director (
 	first VARCHAR(20),
 	dob DATE,
 	dod DATE
-);
+) ENGINE=INNODB;
 
 
 # MovieGenre
 
 CREATE TABLE MovieGenre (
 	mid INT,
-	genre VARCHAR(20)
-);
+	genre VARCHAR(20),
+	FOREIGN KEY (mid) references Movie(id)
+) ENGINE=INNODB;
 
 
 # MovieDirector
 
 CREATE TABLE MovieDirector (
 	mid INT,
-	did INT
-);
+	did INT,
+	FOREIGN KEY (mid) references Movie(id),
+	FOREIGN KEY (did) references Director(id)
+) ENGINE=INNODB;
 
 
 # MovieActor
@@ -62,8 +66,10 @@ CREATE TABLE MovieDirector (
 CREATE TABLE MovieActor (
 	mid INT,
 	aid INT,
-	role VARCHAR(50)
-);
+	role VARCHAR(50),
+	FOREIGN KEY (mid) references Movie(id),
+	FOREIGN KEY (aid) references Actor(id)
+) ENGINE=INNODB;
 
 
 # MovieRating
@@ -71,8 +77,9 @@ CREATE TABLE MovieActor (
 CREATE TABLE MovieRating (
 	mid INT,
 	imdb INT,
-	rot INT
-);
+	rot INT,
+	FOREIGN KEY (mid) references Movie(id)
+) ENGINE=INNODB;
 
 
 # Review
@@ -82,19 +89,20 @@ CREATE TABLE Review (
 	time TIMESTAMP,
 	mid INT PRIMARY KEY,
 	rating INT,
-	comment VARCHAR(500)
-);
+	comment VARCHAR(500),
+	FOREIGN KEY (mid) references Movie(id)
+) ENGINE=INNODB;
 
 
 # MaxPersonID
 
 CREATE TABLE MaxPersonID (
 	id INT PRIMARY KEY
-);
+) ENGINE=INNODB;
 
 
 # MaxMovieID
 
 CREATE TABLE MaxMovieID (
 	id INT PRIMARY KEY
-);
+) ENGINE=INNODB;
