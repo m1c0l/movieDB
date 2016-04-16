@@ -18,9 +18,9 @@ Review.mid references Movie.id
 
 
 CHECK constraints:
+Actor.dob < Actor.dod, or Actor.dod is null
 Sales.ticketsSold >= 0
+Director.dob < Director.dod, or Director.dod is null
 0 <= MovieRating.imdb <= 100
 0 <= MovieRating.rot <= 100
 0 <= Review.rating <= 100
-Actor.dob < Actor.dod, or Actor.dod is null
-Director.dob < Director.dod, or Director.dod is null
