@@ -1,4 +1,4 @@
-UID = dist
+UID = $(shell sed 's/,.*//' team.txt)
 ZIP = P1A.zip
 FILES = readme.txt team.txt create.sql load.sql queries.sql www/query.php violate.sql
 

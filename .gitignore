@@ -1,11 +1,6 @@
-.bash*
-.profile
-.mysql_history
-.cache/
-.vim*
-.gitconfig
-.dircolors
-.inputrc
-.ssh/
-*.swp
+team.txt
 *.zip
+
+.*
+!.gitignore
+p1a_test
