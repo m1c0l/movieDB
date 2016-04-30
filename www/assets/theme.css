@@ -5,3 +5,7 @@ body {
 div.theme-showcase {
 	margin-top: 20px;
 }
+
+a {
+	display: block;
+}
