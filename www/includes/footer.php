@@ -1,3 +1,4 @@
+			</div>
 		</div> <!-- container -->
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="assets/jquery-1.12.3.js"></script>

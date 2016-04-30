@@ -1,3 +1,6 @@
+<?php
+$mysqli = new mysqli('localhost', 'cs143', '', 'CS143');
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,7 +8,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<title>Bootstrap 101 Template</title>
 
 		<!-- Bootstrap -->
 		<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +27,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">MovieDB</a>
+					<a class="navbar-brand" href="index.php">MovieDB</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
@@ -35,5 +37,6 @@
 				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
-		<div class="container">
+		<div class="container theme-showcase">
+			<div class="jumbotron">
 
