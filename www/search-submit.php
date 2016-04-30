@@ -13,10 +13,31 @@ else {
 		$actorSqlArr[] = "(first LIKE '%$n%' OR last LIKE '%$n%')";
 	}
 	$actorSql .= implode(" AND ", $actorSqlArr);
-	echo $actorSql;
+	//echo $actorSql;
 	$result = $mysqli->query($actorSql);
 	if ($result->num_rows == 0) {
 		echo "<p>No actors with the name $name</p>";
+	}
+	else {
+		?>
+		<p>Movie results</p>
+		<ul>
+		<?php 
+		while ($row = $result->fetch_assoc()) {
+			echo "<li>  {$row['first']} {$row['last']} </li>"; 
+		}
+		echo "</ul>";
+	}
+	$movieSql = "SELECT * FROM Movie WHERE ";
+	$movieSqlArr = array();
+	foreach($nameArr as $n) {
+		$movieSqlArr[] = "(title LIKE '%$n%')";
+	}
+	$movieSql .= implode(" AND ", $movieSqlArr);
+	//echo $movieSql;
+	$result = $mysqli->query($movieSql);
+	if ($result->num_rows == 0) {
+		echo "<p>No movies with the name $name</p>";
 	}
 	else {
 		?>
@@ -24,10 +45,11 @@ else {
 		<ul>
 		<?php 
 		while ($row = $result->fetch_assoc()) {
-			echo "<li>  {$row['first']} {$row['last']}"; 
+			echo "<li>  {$row['title']} </li>"; 
 		}
 		echo "</ul>";
 	}
+
 }
 ?>
 <?php
