@@ -20,11 +20,11 @@ else {
 	}
 	else {
 		?>
-		<p>Movie results</p>
+		<p>Actor results</p>
 		<ul>
 		<?php 
 		while ($row = $result->fetch_assoc()) {
-			echo "<li>  {$row['first']} {$row['last']} </li>"; 
+			echo "<li><a href='actor-info.php?aid={$row['id']}'>{$row['first']} {$row['last']}</a></li>"; 
 		}
 		echo "</ul>";
 	}
@@ -41,7 +41,7 @@ else {
 	}
 	else {
 		?>
-		<p>Actor results</p>
+		<p>Movie results</p>
 		<ul>
 		<?php 
 		while ($row = $result->fetch_assoc()) {
