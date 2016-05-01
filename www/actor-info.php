@@ -21,7 +21,7 @@ else {
 			echo "Date of death: $dod<br/>";
 		}
 		echo "</p>";
-		$moviesQuery = "SELECT role, title FROM Movie as M, MovieActor as MA WHERE MA.aid=$aid AND M.id=MA.mid";
+		$moviesQuery = "SELECT role, title, M.id FROM Movie as M, MovieActor as MA WHERE MA.aid=$aid AND M.id=MA.mid";
 		$result = $mysqli->query($moviesQuery);
 		if ($result->num_rows == 0) {
 			echo "<p>This actor didn't act in any movies.</p>";
@@ -32,7 +32,7 @@ else {
 			<ul>
 			<?php
 			while ($record = $result->fetch_assoc()) {
-				echo "<li>Played {$record['role']} in {$record['title']}</li>";
+				echo "<li>Played {$record['role']} in <a href='movie-info.php?mid={$record['id']}'>{$record['title']}</a></li>";
 			}
 			echo "</ul>";
 		}
