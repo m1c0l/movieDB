@@ -7,13 +7,13 @@ include 'includes/header.php';
 	<div class="form-group">
 		<label for="first" class="col-sm-2">First name </label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="first" placeholder="First name" required>
+			<input type="text" class="form-control" name="first" placeholder="First name" maxlength="20" required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="last" class="col-sm-2">Last name </label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="last" placeholder="Last name" required>
+			<input type="text" class="form-control" name="last" placeholder="Last name" maxlength="20" required>
 		</div>
 	</div>
 	<div class="form-group">
