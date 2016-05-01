@@ -34,13 +34,15 @@ $mysqli = new mysqli('localhost', 'cs143', '', 'CS143');
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="dropdown">
-              						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add new content<span class="caret"></span></a>
-              						<ul class="dropdown-menu">
-					        		<li><a href="add-actor.php">Add new actor</a></li>
-					        		<li><a href="add-director.php">Add new director</a></li>
-                						<li><a href="#">Something else here</a></li>
-                			        	</ul>
-            					</li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								Add new content<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="add-actor.php">Add new actor</a></li>
+								<li><a href="add-director.php">Add new director</a></li>
+								<li><a href="add-movie.php">Add new movie</a></li>
+							</ul>
+						</li>
 
 						<li><a href="#about">About</a></li>
 						<li><a href="search.php">Actors/Movies search</a></li>
