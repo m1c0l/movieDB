@@ -40,13 +40,26 @@ else {
 			$genreStr = implode(", ", $genreArr);
 		}
 		//print_r($directorResult);
-		echo "<h3>${movieRecord['title']} (${movieRecord['year']}) information</h3>";
+		echo "<h2>${movieRecord['title']} (${movieRecord['year']}) information</h2>";
 		echo "<p>";
 		echo "Directed by: $directorStr<br/>";
 		echo "Produced by: ${movieRecord['company']} <br/>";
 		echo "Genre: $genreStr<br/>";
 		echo "Rated: ${movieRecord['rating']}<br/>";
 		echo "</p>";
+
+		$castSql = "SELECT A.id, first, last, role FROM MovieActor as MA, Actor as A WHERE MA.mid=$mid AND A.id=MA.aid";
+		$castResult = $mysqli->query($castSql);
+		if (!$castResult || $castResult->num_rows == 0) {
+			echo "<p>No cast listed for this movie.</p>";
+		}
+		else {
+			echo "<h3>Cast</h3>";
+			echo "<ul>";
+			while ($castRow = $castResult->fetch_assoc()) {
+				echo "<li><a href='actor-info.php?aid=${castRow['id']}'>${castRow['first']} ${castRow['last']}</a> as ${castRow['role']}</li>";
+			}
+		}
 	}
 }
 ?>
