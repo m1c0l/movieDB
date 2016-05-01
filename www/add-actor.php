@@ -3,17 +3,17 @@ $TITLE="Add Actors";
 include 'includes/header.php';
 ?>
 <p>Add an actor.</p>
-<form action="add-actor.php" method="GET" class="form-horizontal">
+<form action="add-actor.php" method="POST" class="form-horizontal">
 	<div class="form-group">
 		<label for="first" class="col-sm-2">First name </label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="first" placeholder="First name" maxlength="20" required>
+			<input type="text" class="form-control" name="first" id="first" placeholder="First name" maxlength="20" required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="last" class="col-sm-2">Last name </label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="last" placeholder="Last name" maxlength="20" required>
+			<input type="text" class="form-control" name="last" id="last" placeholder="Last name" maxlength="20" required>
 		</div>
 	</div>
 	<div class="form-group">
@@ -26,13 +26,13 @@ include 'includes/header.php';
 	<div class="form-group">
 		<label for="dob" class="col-sm-2">Date of Birth</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="dob" placeholder="yyyy-mm-dd" required>
+			<input type="text" class="form-control" name="dob" id="dob" placeholder="yyyy-mm-dd" required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="dod" class="col-sm-2">Date of Death</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="dod" placeholder="yyyy-mm-dd (leave blank if still alive)">
+			<input type="text" class="form-control" name="dod" id="dod" placeholder="yyyy-mm-dd (leave blank if still alive)">
 		</div>
 	</div>
 	<button type="submit" class="btn btn-default">Submit</button>
@@ -50,12 +50,12 @@ include 'includes/header.php';
 		return false;
 	}
 
-	if (count($_GET) > 0) {
-		$first = $_GET['first'];
-		$last = $_GET['last'];
-		$sex = $_GET['sex'];
-		$dob = $_GET['dob'];
-		$dod = empty($_GET['dod']) ? NULL : $_GET['dod'];
+	if (count($_POST) > 0) {
+		$first = $_POST['first'];
+		$last = $_POST['last'];
+		$sex = $_POST['sex'];
+		$dob = $_POST['dob'];
+		$dod = empty($_POST['dod']) ? NULL : $_POST['dod'];
 
 		$good_input = true;
 		$message = '';

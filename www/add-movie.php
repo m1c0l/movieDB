@@ -3,23 +3,23 @@ $TITLE="Add Movies";
 include 'includes/header.php';
 ?>
 <p>Add a movie.</p>
-<form action="add-movie.php" method="GET" class="form-horizontal">
+<form action="add-movie.php" method="POST" class="form-horizontal">
 	<div class="form-group">
 		<label for="title" class="col-sm-2">Title </label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="title" placeholder="Title" maxlength="100" required>
+			<input type="text" class="form-control" name="title" id="title" placeholder="Title" maxlength="100" required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="year" class="col-sm-2">Year </label>
 		<div class="col-sm-10">
-			<input type="number" class="form-control" name="year" placeholder="Year" required>
+			<input type="number" class="form-control" name="year" id="year" placeholder="Year" required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="rating" class="col-sm-2">Rating </label>
 		<div class="col-sm-10">
-			<select name="rating">
+			<select name="rating" id="rating">
 				<option value="G">G</option>
 				<option value="PG">PG</option>
 				<option value="PG-13">PG-13</option>
@@ -32,7 +32,7 @@ include 'includes/header.php';
 	<div class="form-group">
 		<label for="company" class="col-sm-2">Company </label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="company" placeholder="Company" maxlength="50" required>
+			<input type="text" class="form-control" name="company" id="company" placeholder="Company" maxlength="50" required>
 		</div>
 	</div>
 
@@ -40,11 +40,11 @@ include 'includes/header.php';
 </form>
 
 <?php
-	if (count($_GET) > 0) {
-		$title = $_GET['title'];
-		$year = $_GET['year'];
-		$rating = $_GET['rating'];
-		$company = $_GET['company'];
+	if (count($_POST) > 0) {
+		$title = $_POST['title'];
+		$year = $_POST['year'];
+		$rating = $_POST['rating'];
+		$company = $_POST['company'];
 
 		$good_input = true;
 		$message = '';
