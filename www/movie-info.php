@@ -20,8 +20,11 @@ else {
 			$directorStr = "No director listed";
 		}
 		else {
-			$directorRecord = $directorResult->fetch_assoc();
-			$directorStr = $directorRecord['first'] . " " . $directorRecord['last'];
+			$directorArr = array();
+			while ($directorRow = $directorResult->fetch_assoc()) {
+				$directorArr[] = $directorRow['first'] . " " . $directorRow['last'];
+			}
+			$directorStr = implode(", ", $directorArr);
 		}
 		$genreSql = "SELECT genre FROM MovieGenre WHERE mid=$mid";
 		$genreResult = $mysqli->query($genreSql);
@@ -41,7 +44,9 @@ else {
 		echo "<p>";
 		echo "Directed by: $directorStr<br/>";
 		echo "Produced by: ${movieRecord['company']} <br/>";
-		echo "Genre: $genreStr<br/></p>";
+		echo "Genre: $genreStr<br/>";
+		echo "Rated: ${movieRecord['rating']}<br/>";
+		echo "</p>";
 	}
 }
 ?>
