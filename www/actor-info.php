@@ -1,14 +1,14 @@
 <?php
 $TITLE="Actor info";
 include 'includes/header.php';
-$aid = $_GET['aid'];
-if (empty($aid)) {
+if (empty($_GET['aid'])) {
 	echo "<p>No actor id specified.</p>";
 }
 else {
+	$aid = $_GET['aid'];
 	$query = "SELECT * FROM Actor WHERE id=$aid";
 	$result = $mysqli->query($query);
-	if ($result->num_rows == 0) {
+	if (!$result || $result->num_rows == 0) {
 		echo "<p>Invalid actor id.</p>";
 	}
 	else {
