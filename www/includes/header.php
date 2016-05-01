@@ -37,7 +37,7 @@ $mysqli = new mysqli('localhost', 'cs143', '', 'CS143');
               						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add new content<span class="caret"></span></a>
               						<ul class="dropdown-menu">
 					        		<li><a href="add-actor.php">Add new actor</a></li>
-					        		<li><a href="#">Another action</a></li>
+					        		<li><a href="add-director.php">Add new director</a></li>
                 						<li><a href="#">Something else here</a></li>
                 			        	</ul>
             					</li>

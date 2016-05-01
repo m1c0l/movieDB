@@ -1,9 +1,9 @@
 <?php
-$TITLE="Add Actors";
+$TITLE="Add Directors";
 include 'includes/header.php';
 ?>
-<p>Add an actor.</p>
-<form action="add-actor.php" method="GET" class="form-horizontal">
+<p>Add a director.</p>
+<form action="add-director.php" method="GET" class="form-horizontal">
 	<div class="form-group">
 		<label for="first" class="col-sm-2">First name </label>
 		<div class="col-sm-10">
@@ -14,13 +14,6 @@ include 'includes/header.php';
 		<label for="last" class="col-sm-2">Last name </label>
 		<div class="col-sm-10">
 			<input type="text" class="form-control" name="last" placeholder="Last name" required>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2">Sex</label>
-		<div class="radio col-sm-10">
-			<label><input type="radio" name="sex" value="Male" required>Male</label>
-			<label><input type="radio" name="sex" value="Female" required>Female</label>
 		</div>
 	</div>
 	<div class="form-group">
@@ -53,7 +46,6 @@ include 'includes/header.php';
 	if (count($_GET) > 0) {
 		$first = $_GET['first'];
 		$last = $_GET['last'];
-		$sex = $_GET['sex'];
 		$dob = $_GET['dob'];
 		$dod = empty($_GET['dod']) ? NULL : $_GET['dod'];
 
@@ -71,10 +63,10 @@ include 'includes/header.php';
 		else {
 			$id = $mysqli->query("SELECT * FROM MaxPersonID")->fetch_assoc()['id'];
 			if (is_null($dod)) {
-			$mysqli->query("INSERT INTO Actor VALUES($id, '$first', '$last', '$sex', '$dob', NULL)");
+			$mysqli->query("INSERT INTO Director VALUES($id, '$first', '$last', '$dob', NULL)");
 			}
 			else {
-			$mysqli->query("INSERT INTO Actor VALUES($id, '$first', '$last', '$sex', '$dob', '$dod')");
+			$mysqli->query("INSERT INTO Actor VALUES($id, '$first', '$last', '$dob', '$dod')");
 			}
 			if (!empty($mysqli->error)) {
 				$message = $mysqli->error;
