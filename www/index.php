@@ -1,5 +1,5 @@
 <?php
-$TITLE="HOME";
+$TITLE = "Home";
 include 'includes/header.php';
 ?>
 <h1>Welcome to MovieDB!</h1>
