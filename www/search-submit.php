@@ -45,7 +45,7 @@ else {
 		<ul>
 		<?php 
 		while ($row = $result->fetch_assoc()) {
-			echo "<li>  {$row['title']} </li>"; 
+			echo "<li><a href='movie-info.php?mid={$row['id']}'>{$row['title']}</a></li>"; 
 		}
 		echo "</ul>";
 	}
