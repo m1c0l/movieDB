@@ -50,7 +50,7 @@ include 'includes/header.php';
 		else {
 			$d = $mysqli->query("SELECT * FROM Director where id=$director")->fetch_assoc();
 			$m = $mysqli->query("SELECT * FROM Movie where id=$movie")->fetch_assoc();
-			$message = "Successfully added {$d['first']} {$d['last']} as Director in {$m['title']}!";
+			$message = "Successfully added {$d['first']} {$d['last']} as Director in \"{$m['title']}\"!";
 		}
 
 		$color = $good_input ? "text-success" : "text-danger";

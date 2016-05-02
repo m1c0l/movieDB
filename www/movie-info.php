@@ -40,7 +40,7 @@ else {
 			$genreStr = implode(", ", $genreArr);
 		}
 		//print_r($directorResult);
-		echo "<h2>${movieRecord['title']} (${movieRecord['year']}) information</h2>";
+		echo "<h2>${movieRecord['title']} (${movieRecord['year']})</h2>";
 		echo "<p>";
 		echo "Directed by: $directorStr<br/>";
 		echo "Produced by: ${movieRecord['company']} <br/>";

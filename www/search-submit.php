@@ -4,6 +4,7 @@ include 'includes/header.php';
 $name = $_GET['name'];
 if (empty($name)) {
 	echo "<p>Please go back and enter a name.</p>";
+	echo '<a href="search.php"><button class="btn btn-default">Back</button>';
 }
 else {
 	$nameArr = preg_split("/[\s]+/", $name); 

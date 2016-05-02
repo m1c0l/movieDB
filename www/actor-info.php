@@ -13,7 +13,7 @@ else {
 	}
 	else {
 		$record = $result->fetch_assoc();
-		echo "<h3>{$record['first']} {$record['last']} information</h3>";
+		echo "<h2>{$record['first']} {$record['last']}</h2>";
 		echo "<p>Sex: {$record['sex']}<br/>";
 		echo "Date of birth: {$record['dob']}<br/>";
 		$dod = $record['dod'];

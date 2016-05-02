@@ -11,13 +11,13 @@ else {
 	$comment = $mysqli->real_escape_string($_POST['comment']);
 	$mid = $_POST['mid'];
 	$reviewSql = "INSERT INTO Review(name, mid, rating, comment) VALUES ('$name', $mid, $rating, '$comment')";
-	echo $reviewSql;
 	$result = $mysqli->query($reviewSql);
 	if (!$result) {
 		echo "<p>An error occurred, try again: {$mysqli->error}</p>";
 	}
 	else {
 		echo "<p>Your review was submitted successfully!</p>";
+		echo "<a href=\"movie-info.php?mid=$mid\"><button>Go Back</button>";
 	}
 }
 ?>

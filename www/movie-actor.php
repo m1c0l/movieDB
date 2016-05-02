@@ -58,7 +58,7 @@ include 'includes/header.php';
 		else {
 			$a = $mysqli->query("SELECT * FROM Actor where id=$actor")->fetch_assoc();
 			$m = $mysqli->query("SELECT * FROM Movie where id=$movie")->fetch_assoc();
-			$message = "Successfully added {$a['first']} {$a['last']} as \"$role\" in {$m['title']}!";
+			$message = "Successfully added {$a['first']} {$a['last']} as \"$role\" in \"{$m['title']}\"!";
 		}
 
 		$color = $good_input ? "text-success" : "text-danger";
