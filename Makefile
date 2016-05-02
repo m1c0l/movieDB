@@ -1,6 +1,6 @@
 UID = $(shell sed 's/,.*//' team.txt)
-ZIP = P1A.zip
-FILES = readme.txt team.txt create.sql load.sql queries.sql www/query.php violate.sql
+ZIP = P1B.zip
+FILES = readme.txt team.txt sql/ www/ testcase/
 
 reload:
 	mysql CS143 < clean.sql
@@ -9,7 +9,7 @@ reload:
 
 dist: $(FILES)
 	mkdir -p $(UID)
-	cp $(FILES) $(UID)
+	cp -r $(FILES) $(UID)
 	zip -r $(ZIP) $(UID)
 	rm -rf $(UID)
 
