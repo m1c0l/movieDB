@@ -71,10 +71,10 @@ include 'includes/header.php';
 		else {
 			$id = $mysqli->query("SELECT * FROM MaxPersonID")->fetch_assoc()['id'];
 			if (is_null($dod)) {
-			$mysqli->query("INSERT INTO Actor VALUES($id, '$first', '$last', '$sex', '$dob', NULL)");
+			$mysqli->query("INSERT INTO Actor(id, last, first, sex, dob, dod) VALUES($id, '$last', '$first', '$sex', '$dob', NULL)");
 			}
 			else {
-			$mysqli->query("INSERT INTO Actor VALUES($id, '$first', '$last', '$sex', '$dob', '$dod')");
+			$mysqli->query("INSERT INTO Actor(id, last, first, sex, dob, dod) VALUES($id, '$last', '$first', '$sex', '$dob', '$dod')");
 			}
 			if (!empty($mysqli->error)) {
 				$message = $mysqli->error;

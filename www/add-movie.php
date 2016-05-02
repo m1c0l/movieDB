@@ -66,7 +66,7 @@ while ($genreRow = $genreResult->fetch_assoc()) {
 		$message = '';
 
 		$id = $mysqli->query("SELECT * FROM MaxMovieID")->fetch_assoc()['id'];
-		$mysqli->query("INSERT INTO Movie VALUES($id, '$title', $year, '$rating', '$company')");
+		$mysqli->query("INSERT INTO Movie(id, title, year, rating, company) VALUES($id, '$title', $year, '$rating', '$company')");
 
 		if (!empty($mysqli->error)) {
 			$message = $mysqli->error;
@@ -78,7 +78,7 @@ while ($genreRow = $genreResult->fetch_assoc()) {
 			if (isset($_POST['genres'])) {
 				$genresSubmitted = $_POST['genres'];
 				foreach($genresSubmitted as $g) {
-					$sql = "INSERT INTO MovieGenre VALUES($id, '$g')";
+					$sql = "INSERT INTO MovieGenre(mid, genre) VALUES($id, '$g')";
 					//echo $sql;
 					$mysqli->query($sql);
 					if ($mysqli->error) {

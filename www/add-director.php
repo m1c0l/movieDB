@@ -63,10 +63,10 @@ include 'includes/header.php';
 		else {
 			$id = $mysqli->query("SELECT * FROM MaxPersonID")->fetch_assoc()['id'];
 			if (is_null($dod)) {
-			$mysqli->query("INSERT INTO Director VALUES($id, '$first', '$last', '$dob', NULL)");
+			$mysqli->query("INSERT INTO Director(id, last, first, dob, dod) VALUES($id, '$last', '$first', '$dob', NULL)");
 			}
 			else {
-			$mysqli->query("INSERT INTO Director VALUES($id, '$first', '$last', '$dob', '$dod')");
+			$mysqli->query("INSERT INTO Director(id, last, first, dob, dod) VALUES($id, '$last', '$first', '$dob', '$dod')");
 			}
 			if (!empty($mysqli->error)) {
 				$message = $mysqli->error;
