@@ -16,6 +16,7 @@ else {
 		$actorSqlArr[] = "(first LIKE '%$n%' OR last LIKE '%$n%')";
 	}
 	$actorSql .= implode(" AND ", $actorSqlArr);
+	$actorSql .= " ORDER BY first";
 	//echo $actorSql;
 	$result = $mysqli->query($actorSql);
 	if ($result->num_rows == 0) {
@@ -40,6 +41,7 @@ else {
 		$directorSqlArr[] = "(first LIKE '%$n%' OR last LIKE '%$n%')";
 	}
 	$directorSql .= implode(" AND ", $directorSqlArr);
+	$directorSql .= " ORDER BY first";
 	$result = $mysqli->query($directorSql);
 	if ($result->num_rows == 0) {
 		echo "<p>No directors with the name $name</p>";
@@ -63,6 +65,7 @@ else {
 		$movieSqlArr[] = "(title LIKE '%$n%')";
 	}
 	$movieSql .= implode(" AND ", $movieSqlArr);
+	$movieSql .= " ORDER BY title";
 	//echo $movieSql;
 	$result = $mysqli->query($movieSql);
 	if ($result->num_rows == 0) {

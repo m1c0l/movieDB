@@ -9,7 +9,7 @@ include 'includes/header.php';
 		<div class="col-sm-10">
 			<select name="director" id="director">
 				<?php
-					$directors = $mysqli->query("SELECT * FROM Director");
+					$directors = $mysqli->query("SELECT * FROM Director ORDER BY first");
 					while($d = $directors->fetch_assoc()) {
 						echo "<option value=\"{$d['id']}\">{$d['first']} {$d['last']} ({$d['dob']})</option>";
 					}
@@ -22,7 +22,7 @@ include 'includes/header.php';
 		<div class="col-sm-10">
 			<select name="movie" id="movie">
 				<?php
-					$movies = $mysqli->query("SELECT * FROM Movie");
+					$movies = $mysqli->query("SELECT * FROM Movie ORDER BY title");
 					while($m = $movies->fetch_assoc()) {
 						echo "<option value=\"{$m['id']}\">{$m['title']} ({$m['year']})</option>";
 					}

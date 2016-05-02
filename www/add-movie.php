@@ -1,7 +1,7 @@
 <?php
 $TITLE="Add Movies";
 include 'includes/header.php';
-$genreSql = "SELECT DISTINCT genre FROM MovieGenre";
+$genreSql = "SELECT DISTINCT genre FROM MovieGenre ORDER BY genre";
 $genreResult = $mysqli->query($genreSql);
 $genreArr = array();
 while ($genreRow = $genreResult->fetch_assoc()) {
@@ -42,13 +42,15 @@ while ($genreRow = $genreResult->fetch_assoc()) {
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-12">Genres</div>
+		<div class="col-sm-2"><label>Genres</label></div>
+		<div class="col-sm-10">
 		<?php foreach($genreArr as $g) {?>
 		<div class="col-sm-2">
 			<input type="checkbox" name="genres[]" id="<?php echo $g;?>" value="<?php echo $g;?>" />
 			<label for="<?php echo $g;?>"><?php echo $g;?></label>
 		</div>
 		<?php } ?>
+		</div>
 	</div>
 	<button type="submit" class="btn btn-default">Submit</button>
 </form>
