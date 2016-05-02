@@ -41,6 +41,8 @@ $mysqli = new mysqli('localhost', 'cs143', '', 'CS143');
 								<li><a href="add-actor.php">Add new actor</a></li>
 								<li><a href="add-director.php">Add new director</a></li>
 								<li><a href="add-movie.php">Add new movie</a></li>
+								<li><a href="movie-actor.php">Add an actor to a movie</a></li>
+								<li><a href="movie-director.php">Add a director to a movie</a></li>
 							</ul>
 						</li>
 
