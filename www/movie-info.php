@@ -59,10 +59,45 @@ else {
 			while ($castRow = $castResult->fetch_assoc()) {
 				echo "<li><a href='actor-info.php?aid=${castRow['id']}'>${castRow['first']} ${castRow['last']}</a> as ${castRow['role']}</li>";
 			}
+			echo "</ul>";
+		}
+		$reviewSql = "SELECT * FROM Review WHERE mid=$mid";
+		$reviewResult = $mysqli->query($reviewSql);
+		$reviewFirstLine = '';
+		$allReviews = array();
+		if (!$reviewResult || $reviewResult->num_rows == 0) {
+			$reviewFirstLine = "No reviews submitted yet.";
+		}
+		else {
+			$avgRatingSql = "SELECT AVG(rating) FROM Review WHERE mid=$mid GROUP BY mid";
+			$avgRatingResult = $mysqli->query($avgRatingSql)->fetch_assoc();
+			//print_r($avgRatingResult);
+			$avgRatingStr = $avgRatingResult["AVG(rating)"];
+			$reviewFirstLine = "Average rating: $avgRatingStr/5 from {$reviewResult->num_rows} reviews.";
+
+			while ($reviewRow = $reviewResult->fetch_assoc()) {
+				$reviewStr = "{$reviewRow['name']} rated this {$reviewRow['rating']}/5 at {$reviewRow['time']}<br/>";
+				if (!empty($reviewRow['comment'])) {
+					$reviewStr .= "Comments: <span class='word-wrap'>{$reviewRow['comment']}</span>";
+				}
+				$allReviews[] = $reviewStr;
+			}
+		}
+		echo "<h3>Reviews</h3>";
+		echo "<p>";
+		echo $reviewFirstLine . "<br/>";
+		echo "<a href='add-review.php?mid=$mid'>Add your own review!</a>";
+		foreach($allReviews as $r) {
+			echo "<p>$r</p>";
 		}
 	}
 }
 ?>
+<style>
+.word-wrap {
+	word-wrap: break-word;
+}
+</style>
 <?php
 include 'includes/footer.php';
 ?>
