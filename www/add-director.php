@@ -66,7 +66,7 @@ include 'includes/header.php';
 			$mysqli->query("INSERT INTO Director VALUES($id, '$first', '$last', '$dob', NULL)");
 			}
 			else {
-			$mysqli->query("INSERT INTO Actor VALUES($id, '$first', '$last', '$dob', '$dod')");
+			$mysqli->query("INSERT INTO Director VALUES($id, '$first', '$last', '$dob', '$dod')");
 			}
 			if (!empty($mysqli->error)) {
 				$message = $mysqli->error;
