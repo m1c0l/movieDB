@@ -13,7 +13,7 @@ else {
 	}
 	else {
 		$movieRecord = $movieResult->fetch_assoc();
-		$directorSql = "SELECT first, last FROM MovieDirector as MD, Director as D WHERE MD.mid=$mid AND MD.did=D.id";
+		$directorSql = "SELECT did, first, last FROM MovieDirector as MD, Director as D WHERE MD.mid=$mid AND MD.did=D.id";
 		$directorResult = $mysqli->query($directorSql);
 		$directorStr = "";
 		if (!$directorResult || $directorResult->num_rows == 0) {
@@ -22,7 +22,10 @@ else {
 		else {
 			$directorArr = array();
 			while ($directorRow = $directorResult->fetch_assoc()) {
-				$directorArr[] = $directorRow['first'] . " " . $directorRow['last'];
+				$did = $directorRow['did'];
+				$first = $directorRow['first'];
+				$last = $directorRow['last'];
+				$directorArr[] = "<a href='director-info.php?did=$did'>$first $last</a>";
 			}
 			$directorStr = stripslashes(implode(", ", $directorArr));
 		}
