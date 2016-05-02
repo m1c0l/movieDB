@@ -5,11 +5,11 @@ if (empty($_GET['aid'])) {
 	echo "<p>No actor id specified.</p>";
 }
 else {
-	$aid = $_GET['aid'];
+	$aid = $mysqli->real_escape_string($_GET['aid']);
 	$query = "SELECT * FROM Actor WHERE id=$aid";
 	$result = $mysqli->query($query);
 	if (!$result || $result->num_rows == 0) {
-		echo "<p>Invalid actor id.</p>";
+		echo "<p class='text-danger'>Invalid actor id $aid.</p>";
 	}
 	else {
 		$record = $result->fetch_assoc();
@@ -32,7 +32,10 @@ else {
 			<ul>
 			<?php
 			while ($record = $result->fetch_assoc()) {
-				echo "<li>Played {$record['role']} in <a href='movie-info.php?mid={$record['id']}'>{$record['title']}</a></li>";
+				$role = stripslashes($record['role']);
+				$id = stripslashes($record['id']);
+				$title = stripslashes($record['title']);
+				echo "<li>Played $role in <a href='movie-info.php?mid=$id'>$title</a></li>";
 			}
 			echo "</ul>";
 		}

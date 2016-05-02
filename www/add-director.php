@@ -44,10 +44,10 @@ include 'includes/header.php';
 	}
 
 	if (count($_POST) > 0) {
-		$first = $_POST['first'];
-		$last = $_POST['last'];
-		$dob = $_POST['dob'];
-		$dod = empty($_POST['dod']) ? NULL : $_POST['dod'];
+		$first = $mysqli->real_escape_string($_POST['first']);
+		$last = $mysqli->real_escape_string($_POST['last']);
+		$dob = $mysqli->real_escape_string($_POST['dob']);
+		$dod = empty($_POST['dod']) ? NULL : $mysqli->real_escape_string($_POST['dod']);
 
 		$good_input = true;
 		$message = '';
@@ -78,7 +78,8 @@ include 'includes/header.php';
 			}
 		}
 		$color = $good_input ? "text-success" : "text-danger";
-		echo "<p class=\"$color\">$message</p>";
+		$escapedMsg = stripslashes($message);
+		echo "<p class=\"$color\">$escapedMsg</p>";
 	}
 ?>
 

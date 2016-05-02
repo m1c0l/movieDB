@@ -51,17 +51,17 @@ include 'includes/header.php';
 	}
 
 	if (count($_POST) > 0) {
-		$first = $_POST['first'];
-		$last = $_POST['last'];
-		$sex = $_POST['sex'];
-		$dob = $_POST['dob'];
-		$dod = empty($_POST['dod']) ? NULL : $_POST['dod'];
+		$first = $mysqli->real_escape_string($_POST['first']);
+		$last = $mysqli->real_escape_string($_POST['last']);
+		$sex = $mysqli->real_escape_string($_POST['sex']);
+		$dob = $mysqli->real_escape_string($_POST['dob']);
+		$dod = empty($_POST['dod']) ? NULL : $mysqli->real_escape_string($_POST['dod']);
 
 		$good_input = true;
 		$message = '';
 
 		if (invalidDate($dob)) {
-			$message = "Invalid date of birth: $dob</p>";
+			$message = "Invalid date of birth: $dob}</p>";
 			$good_input = false;
 		}
 		else if (!is_null($dod) && invalidDate($dod)) {
@@ -86,7 +86,8 @@ include 'includes/header.php';
 			}
 		}
 		$color = $good_input ? "text-success" : "text-danger";
-		echo "<p class=\"$color\">$message</p>";
+		$escapedMsg = stripslashes($message);
+		echo "<p class=\"$color\">$escapedMsg</p>";
 	}
 ?>
 

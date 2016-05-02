@@ -7,7 +7,9 @@ if (empty($name)) {
 	echo '<a href="search.php"><button class="btn btn-default">Back</button>';
 }
 else {
-	$nameArr = preg_split("/[\s]+/", $name); 
+	$escName = $mysqli->real_escape_string($name);
+	$nameArr = preg_split("/[\s]+/", $escName); 
+
 	$actorSql = "SELECT * FROM Actor WHERE ";
 	$actorSqlArr = array();
 	foreach($nameArr as $n) {
@@ -25,10 +27,36 @@ else {
 		<ul>
 		<?php 
 		while ($row = $result->fetch_assoc()) {
-			echo "<li><a href='actor-info.php?aid={$row['id']}'>{$row['first']} {$row['last']}</a></li>"; 
+			$first = stripslashes($row['first']);
+			$last = stripslashes($row['last']);
+			echo "<li><a href='actor-info.php?aid={$row['id']}'>$first $last</a></li>"; 
 		}
 		echo "</ul>";
 	}
+
+	$directorSql = "SELECT * FROM Director WHERE ";
+	$directorSqlArr = array();
+	foreach($nameArr as $n) {
+		$directorSqlArr[] = "(first LIKE '%$n%' OR last LIKE '%$n%')";
+	}
+	$directorSql .= implode(" AND ", $directorSqlArr);
+	$result = $mysqli->query($directorSql);
+	if ($result->num_rows == 0) {
+		echo "<p>No directors with the name $name</p>";
+	}
+	else {
+		?>
+		<p>Director results</p>
+		<ul>
+		<?php 
+		while ($row = $result->fetch_assoc()) {
+			$first = stripslashes($row['first']);
+			$last = stripslashes($row['last']);
+			echo "<li><a href='director-info.php?did={$row['id']}'>$first $last</a></li>"; 
+		}
+		echo "</ul>";
+	}
+
 	$movieSql = "SELECT * FROM Movie WHERE ";
 	$movieSqlArr = array();
 	foreach($nameArr as $n) {
@@ -46,7 +74,8 @@ else {
 		<ul>
 		<?php 
 		while ($row = $result->fetch_assoc()) {
-			echo "<li><a href='movie-info.php?mid={$row['id']}'>{$row['title']}</a></li>"; 
+			$title = stripslashes($row['title']);
+			echo "<li><a href='movie-info.php?mid={$row['id']}'>$title</a></li>"; 
 		}
 		echo "</ul>";
 	}

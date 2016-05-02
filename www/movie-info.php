@@ -9,7 +9,7 @@ else {
 	$movieSql = "SELECT * FROM Movie WHERE id=$mid";
 	$movieResult = $mysqli->query($movieSql);
 	if (!$movieResult || $movieResult->num_rows == 0) {
-		echo "<p>Invalid movie ID</p>";
+		echo "<p class='text-danger'>Invalid movie ID $mid.</p>";
 	}
 	else {
 		$movieRecord = $movieResult->fetch_assoc();
@@ -24,7 +24,7 @@ else {
 			while ($directorRow = $directorResult->fetch_assoc()) {
 				$directorArr[] = $directorRow['first'] . " " . $directorRow['last'];
 			}
-			$directorStr = implode(", ", $directorArr);
+			$directorStr = stripslashes(implode(", ", $directorArr));
 		}
 		$genreSql = "SELECT genre FROM MovieGenre WHERE mid=$mid";
 		$genreResult = $mysqli->query($genreSql);
@@ -37,15 +37,19 @@ else {
 			while ($genreRows = $genreResult->fetch_assoc()) {
 				$genreArr[] = $genreRows['genre'];
 			}
-			$genreStr = implode(", ", $genreArr);
+			$genreStr = stripslashes(implode(", ", $genreArr));
 		}
 		//print_r($directorResult);
-		echo "<h2>${movieRecord['title']} (${movieRecord['year']})</h2>";
+		$title = stripslashes($movieRecord['title']);
+		$year = stripslashes($movieRecord['year']);
+		$company = stripslashes($movieRecord['company']);
+		$rating = stripslashes($movieRecord['rating']);
+		echo "<h2>$title ($year)</h2>";
 		echo "<p>";
 		echo "Directed by: $directorStr<br/>";
-		echo "Produced by: ${movieRecord['company']} <br/>";
+		echo "Produced by: $company<br/>";
 		echo "Genre: $genreStr<br/>";
-		echo "Rated: ${movieRecord['rating']}<br/>";
+		echo "Rated: $rating<br/>";
 		echo "</p>";
 
 		$castSql = "SELECT A.id, first, last, role FROM MovieActor as MA, Actor as A WHERE MA.mid=$mid AND A.id=MA.aid";
@@ -57,7 +61,11 @@ else {
 			echo "<h3>Cast</h3>";
 			echo "<ul>";
 			while ($castRow = $castResult->fetch_assoc()) {
-				echo "<li><a href='actor-info.php?aid=${castRow['id']}'>${castRow['first']} ${castRow['last']}</a> as ${castRow['role']}</li>";
+				$aid = stripslashes($castRow['id']);
+				$first = stripslashes($castRow['first']);
+				$last = stripslashes($castRow['last']);
+				$role = stripslashes($castRow['role']);
+				echo "<li><a href='actor-info.php?aid=$aid'>$first $last</a> as $role</li>";
 			}
 			echo "</ul>";
 		}
@@ -78,7 +86,8 @@ else {
 			while ($reviewRow = $reviewResult->fetch_assoc()) {
 				$reviewStr = "{$reviewRow['name']} rated this {$reviewRow['rating']}/5 at {$reviewRow['time']}<br/>";
 				if (!empty($reviewRow['comment'])) {
-					$reviewStr .= "Comments: <span class='word-wrap'>{$reviewRow['comment']}</span>";
+					$cmt = stripslashes($reviewRow['comment']);
+					$reviewStr .= "Comments: <span class='word-wrap'>$cmt</span>";
 				}
 				$allReviews[] = $reviewStr;
 			}

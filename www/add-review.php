@@ -5,15 +5,18 @@ if (empty($_GET['mid'])) {
 	echo "<p>No movie ID specified!</p>";
 }
 else {
-	$mid = $_GET['mid'];
+	$mid = $mysqli->real_escape_string($_GET['mid']);
 	$movieSql = "SELECT * FROM Movie WHERE id=$mid";
 	$movieResult = $mysqli->query($movieSql);
 	if (!$movieResult || $movieResult->num_rows == 0) {
-		echo "<p>Invalid movie ID</p>";
+		$mid = stripslashes($mid);
+		echo "<p class='text-danger'>Invalid movie ID $mid.</p>";
 	}
 	else {
 		$movieRecord = $movieResult->fetch_assoc();
-		echo "<h2>Add new review for ${movieRecord['title']} (${movieRecord['year']})</h2>";
+		$title = stripslashes($movieRecord['title']);
+		$year = stripslashes($movieRecord['year']);
+		echo "<h2>Add new review for $title ($year)</h2>";
 		?>
 		<form method="POST" action="add-review-submit.php" class="form-horizontal">
 			<input type="hidden" name="mid" value="<?php echo $mid?>"/>

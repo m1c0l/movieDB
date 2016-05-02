@@ -6,10 +6,9 @@ if (count($_POST) == 0) {
 }
 else {
 	$name = $mysqli->real_escape_string($_POST['name']);
-	$rating = $_POST['rating'];
-	//$comment = $_POST['comments'];
+	$rating = $mysqli->real_escape_string($_POST['rating']);
 	$comment = $mysqli->real_escape_string($_POST['comment']);
-	$mid = $_POST['mid'];
+	$mid = $mysqli->real_escape_string($_POST['mid']);
 	$reviewSql = "INSERT INTO Review(name, mid, rating, comment) VALUES ('$name', $mid, $rating, '$comment')";
 	$result = $mysqli->query($reviewSql);
 	if (!$result) {
