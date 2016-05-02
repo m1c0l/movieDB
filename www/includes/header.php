@@ -33,6 +33,7 @@ $mysqli = new mysqli('localhost', 'cs143', '', 'CS143');
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
+						<li><a href="search.php">Actors/Movies search</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								Add new content<span class="caret"></span>
@@ -45,9 +46,6 @@ $mysqli = new mysqli('localhost', 'cs143', '', 'CS143');
 								<li><a href="movie-director.php">Add a director to a movie</a></li>
 							</ul>
 						</li>
-
-						<li><a href="#about">About</a></li>
-						<li><a href="search.php">Actors/Movies search</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
