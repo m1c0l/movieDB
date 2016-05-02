@@ -21,7 +21,7 @@ else {
 			echo "Date of death: $dod<br/>";
 		}
 		echo "</p>";
-		$moviesQuery = "SELECT role, title, M.id FROM Movie as M, MovieActor as MA WHERE MA.aid=$aid AND M.id=MA.mid";
+		$moviesQuery = "SELECT role, title, year, M.id FROM Movie as M, MovieActor as MA WHERE MA.aid=$aid AND M.id=MA.mid";
 		$result = $mysqli->query($moviesQuery);
 		if ($result->num_rows == 0) {
 			echo "<p>This actor didn't act in any movies.</p>";
@@ -35,7 +35,8 @@ else {
 				$role = stripslashes($record['role']);
 				$id = stripslashes($record['id']);
 				$title = stripslashes($record['title']);
-				echo "<li>Played $role in <a href='movie-info.php?mid=$id'>$title</a></li>";
+				$year = stripslashes($record['year']);
+				echo "<li>Played $role in <a href='movie-info.php?mid=$id'>$title ($year)</a></li>";
 			}
 			echo "</ul>";
 		}

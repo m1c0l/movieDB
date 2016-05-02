@@ -54,7 +54,8 @@ else {
 		<?php 
 		while ($row = $result->fetch_assoc()) {
 			$title = stripslashes($row['title']);
-			echo "<li><a href='movie-info.php?mid={$row['id']}'>$title</a></li>"; 
+			$year = stripslashes($row['year']);
+			echo "<li><a href='movie-info.php?mid={$row['id']}'>$title ($year)</a></li>"; 
 		}
 		echo "</ul>";
 	}
